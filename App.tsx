@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, useEffect } from 'react';
 import { analyzeImageForAnemia } from './services/geminiService';
 import { AnalysisResult } from './types';
@@ -48,7 +47,9 @@ const App: React.FC = () => {
   };
 
   const handleAnalyzeClick = useCallback(async () => {
-    if (!selectedFile) return;
+    if (!selectedFile) {
+        return;
+    };
 
     setIsLoading(true);
     setError(null);
