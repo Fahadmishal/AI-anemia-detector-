@@ -1,0 +1,5 @@
+{
+  "name": "Anemia Detection AI",
+  "description": "A lightweight AI-based application for non-invasive anemia detection using image processing techniques. Users can upload an image of their inner eyelid to get an AI-powered analysis for potential signs of anemia. This app is for informational purposes only and is not a substitute for professional medical advice.",
+  "requestFramePermissions": []
+}
