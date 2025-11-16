@@ -6,6 +6,7 @@ import ResultDisplay from './components/ResultDisplay';
 import Loader from './components/Loader';
 import Disclaimer from './components/Disclaimer';
 import ImageQualityGuide from './components/ImageQualityGuide';
+import ApiKeyPrompt from './components/ApiKeyPrompt';
 
 const App: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -14,6 +15,15 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isGuideOpen, setIsGuideOpen] = useState<boolean>(false);
+  const [isApiKeyValid, setIsApiKeyValid] = useState<boolean>(false);
+
+  useEffect(() => {
+    // Check for API key on initial render
+    const apiKey = process.env.API_KEY;
+    if (apiKey && apiKey !== 'PASTE_YOUR_GEMINI_API_KEY_HERE') {
+      setIsApiKeyValid(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (!selectedFile) {
@@ -65,6 +75,10 @@ const App: React.FC = () => {
       setIsLoading(false);
     }
   }, [selectedFile]);
+
+  if (!isApiKeyValid) {
+    return <ApiKeyPrompt />;
+  }
 
   return (
     <>
